@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+
+{% block page_content %}
+
+<div class="container py-5 mt-5">
+
+<div class="about-container mx-auto bg-dark p-5 rounded shadow-sm text-info">
+            <h1 class="text-center mb-4 text-primary">About This App</h1>
+
+            <p class="lead text-center mb-5">
+                A simple and fast movie & TV show tool powered by the <strong>free IMDB API</strong>.
+            </p>
+
+            <hr class="my-4">
+
+            <h3>How It Works</h3>
+            <ul>
+                <li>Results are fetched in real-time from the <a href="https://imdbapi.dev/" target="_blank" class="api-link">imdbapi.dev</a> API.</li>
+                <li>Only <strong>movies</strong> and <strong>TV shows</strong> are shown.</li>
+            </ul>
+
+            <h3 class="mt-4">Free API Used</h3>
+            <p>
+                This app uses the <strong>100% free</strong> and public API from:
+                <br>
+                <a href="https://imdbapi.dev/" target="_blank" class="api-link">https://imdbapi.dev/</a>
+            </p>
+            <p class="text-muted small">
+                No API key required • 1,000 requests/day • Perfect for learning and small projects.
+            </p>
+
+            <h3 class="mt-4">Features</h3>
+            <ul>
+
+                <li>Posters, ratings, and release years</li>
+                <li>Built with Django 5.2 + Bootstrap 5.3.8</li>
+            </ul>
+
+
+            <div class="text-center mt-5">
+                    Maxime DES TOUCHES - {% now 'Y' %} | <a target="_blank"
+                        href="https://github.com/elreviae" class="text-blue"> <i class="fa-brands fa-github"></i></a>
+                </div>
+
+
+        </div>
+
+</div>
+
+
+{% endblock page_content %}
+

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% load movie_extras %}
+
+{% block title %}{% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+
+{% block page_content %}
+
+<div class="container py-5 mt-5">
+
+    <h2 class="text-center mb-4 text-white">Movies</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        {% for mov in movie_data %}
+        <div class="col">
+            <div class="card h-100 movie-card border-0 shadow">
+                <!-- Movie Poster -->
+                {% if mov.primaryImage and mov.primaryImage.url %}
+                <img src="{{ mov.primaryImage.url }}" class="card-img-top" alt="{{ mov.primaryTitle }} poster"
+                     style="height: 50%; object-fit:cover ;">
+                {% else %}
+                <div class="bg-secondary d-flex align-items-center justify-content-center text-white"
+                     style="height: 350px;">
+                    <span class="fs-4">No Image</span>
+                </div>
+                {% endif %}
+
+                <div class="card-body d-flex flex-column">
+                    <!-- Title & Year -->
+                    <h5 class="card-title fw-bold text-dark">
+                        {{ mov.primaryTitle }}
+                        <span class="text-muted fs-6">({{ mov.startYear|default:"TBD" }})</span>
+                    </h5>
+
+                    <!-- Runtime -->
+                    {% if mov.runtimeSeconds %}
+                    <p class="text-muted small mb-2">
+                        <i class="fa-solid fa-clock"></i>
+                            {{ mov.runtimeSeconds|seconds_to_hm }}
+                    </p>
+                    {% endif %}
+
+                    <!-- Genres -->
+                    <div class="mb-3">
+                        {% for genre in mov.genres %}
+                        <span class="badge bg-primary genre-badge me-1">{{ genre }}</span>
+                        {% empty %}
+                        <span class="text-muted small">No genres</span>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Rating -->
+                    {% if mov.rating and mov.rating.aggregateRating %}
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="text-warning fw-bold me-2">★ {{ mov.rating.aggregateRating }}</span>
+                        <span class="text-muted small">({{ mov.rating.voteCount }} votes)</span>
+                    </div>
+                    {% endif %}
+
+                    <!-- Plot -->
+                    {% if mov.plot %}
+                    <p class="plot-text text-secondary flex-grow-1">
+                        {{ mov.plot|truncatewords:30 }}
+                    </p>
+                    {% endif %}
+
+                    <!-- Action Button -->
+                    <a href="https://www.imdb.com/fr/title/{{ mov.id }}" target="_blank" class="btn btn-outline-primary btn-sm mt-auto">
+                        View Details on IMDB <i class="fa-brands fa-imdb"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">No movies found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock page_content %}
+
