@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "django_imbd/wsgi.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "build_staticfiles.sh",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "staticfiles" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/staticfiles/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "django_imbd/wsgi.py"
+    }
+  ],
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "django_imbd.settings"
+  }
+}
