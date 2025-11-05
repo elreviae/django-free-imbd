@@ -14,7 +14,7 @@ def get_imdb_movies():
     current_date = date.today()
     current_year = current_date.strftime("%Y")
     next_year = str(int(current_year) + 1)
-    url = "https://api.imdbapi.dev/titles?types=MOVIE&sortBy=SORT_BY_POPULARITY&startYear="+current_year+"&endYear="+next_year
+    url = "https://api.imdbapi.dev/titles?types=MOVIE&startYear="+ current_year + "&endYear=" + next_year + "&sortBy=SORT_BY_POPULARITY"
     payload = {}
     headers = {}
     response = requests.request("GET", url, headers=headers, data=payload)
@@ -31,8 +31,8 @@ def tv_shows(request):
 def get_imdb_tvshows():
     current_date = date.today()
     current_year = current_date.strftime("%Y")
-    next_year = str(int(current_year) + 1)
-    url = "https://api.imdbapi.dev/titles?types=TV_SERIES&sortBy=SORT_BY_POPULARITY&languageCodes=fr&startYear="+current_year+"&endYear="+next_year
+    # next_year = str(int(current_year) + 1)
+    url = "https://api.imdbapi.dev/titles?types=TV_SERIES&countryCodes=US&countryCodes=GB&sortBy=SORT_BY_POPULARITY&endYear="+ current_year
     payload = {}
     headers = {}
     response = requests.request("GET", url, headers=headers, data=payload)
