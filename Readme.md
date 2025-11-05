@@ -7,6 +7,7 @@
 
 > **A simple, modern Django app to explore movies and TV shows using the free [imdbapi.dev](https://imdbapi.dev/) API**
 
+> Deployment app with :  [@vercel](https://github.com/vercel/vercel)
 ---
 
 ## Live Demo
