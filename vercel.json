@@ -1,27 +1,24 @@
 {
-  "version": 2,
   "builds": [
     {
-      "src": "django_imbd/wsgi.py",
-      "use": "@vercel/python"
+      "src": "django_imdb/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
     },
     {
-      "src": "build_staticfiles.sh",
+      "src": "build.sh",
       "use": "@vercel/static-build",
       "config": { "distDir": "staticfiles" }
     }
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/staticfiles/$1"
+      "src": "/(.*)",
+      "dest": "django_imdb/wsgi.py"
     },
     {
-      "src": "/(.*)",
-      "dest": "django_imbd/wsgi.py"
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
     }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "django_imbd.settings"
-  }
+  ]
 }
