@@ -1,0 +1,9 @@
+# Ignorer les dossiers statiques
+staticfiles/** linguist-vendored
+
+# Exclude filetypes
+*.css linguist-vendored
+*.scss linguist-vendored
+
+# Ignorer les migrations Python
+imdb_app/migrations/* linguist-generated
